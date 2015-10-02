@@ -22,7 +22,7 @@ int *array;
 float total = 0.0, average;
 int size, count;
 
-//Get the number of test scores you wish to average and put in order
+//Get the number of test scores you want to enter
 cout << "How many test scores do you wish to enter?";
 cin >> size;
 
@@ -87,8 +87,8 @@ void selectionSort(int array[], int size)
 	int startScan, minIndex, minValue;
 		for(startScan = 0; startScan <(size-1); startScan++)
 		{
-				minIndex = startScan;
-				minValue = array[startScan];
+					minIndex = startScan;
+					minValue = array[startScan];
 	for(int index = startScan + 1; index < size; index++)
 		{
 			if (array[index] < minValue)
@@ -97,8 +97,8 @@ void selectionSort(int array[], int size)
 					minIndex = index;
 			}
 		}
-		array[minIndex] = array[startScan];
-		array[startScan] = minValue;
+			array[minIndex] = array[startScan];
+			array[startScan] = minValue;
 		}
 }
 
