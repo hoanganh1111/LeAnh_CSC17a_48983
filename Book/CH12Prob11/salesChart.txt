@@ -1,0 +1,5 @@
+        NQuarter #1: 
+   12        sQuarter #2: 
+   12        eQuarter #3: 
+   12        eQuarter #4: 
+   12
