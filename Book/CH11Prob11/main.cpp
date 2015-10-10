@@ -11,6 +11,7 @@
 #include <string.h>					//String Library
 using namespace std;				//Utilize standard name-space directly
 
+//Declaring structure
 struct Budget
  {
 	string name;
@@ -26,9 +27,9 @@ struct Budget
 int main()
 {
 	//Declare variables
-	float totalMonthly;			//Monthly total money
-	float totalExp;				//Total expenses
-	const int size = 11;		//Size of structure
+	float totalMonthly = 0.00;			//Monthly total money
+	float totalExp = 0.00;				//Total expenses
+	const int size = 11;				//Size of structure
 	Budget money[size] = {
 							{"Housing", 500.00, 0, 0 },
 							{"Utilities",150.00, 0, 0 },
@@ -67,9 +68,14 @@ int main()
 	//Define function InputBudget
 	void InputBudget(Budget money[])
 	{
-		cout << "Enter a budget for each category: " << endl;
+		cout << " 1.Housing         2.Utilities      3.Household Expenses\n";
+		cout << " 4.Transportation  5.Food   	    6.Medical\n";
+		cout << " 7.Insurance       8.Entertainment  9.Clothing\n";
+		cout << "10.Miscellaneous\n";
+		cout << "Enter a budget for each category(1-10): \n";
 		for(int count = 0; count < 10; count++)
 			cin >> money[count].newMonthly;
+			cin.ignore();
 	}
 
 	//Define function OutputBudget
