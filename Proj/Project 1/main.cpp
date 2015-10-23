@@ -24,45 +24,56 @@ struct about
 
 //Function prototypes
 void menuDisplay();
-string LoadGameRuleFromFile(ifstream &, int);
+void LoadGameRuleFromFile(ifstream &, string[], int);
 
 int main(int argc, char** argv)
 {
 	ifstream inFile;
 	ofstream outFile;
-	int size;
+
+
+	int size = 10;
+	string gameRule[size];
+
 	int sizeRanF;
 	int sizeRanT;
 	int menuChoice;
 	char play = 'Y';
 	int markO;
 	int turn;
-	bool win = false;
-	char menu = 'N';
+	int turnLeft;
+	char menu = 'Y';
+	char gamestatus = 'Y';
 
+	/*
+	mainMenu:
+	{
 		menuDisplay();
 		cin >> menuChoice;
-
+	}
 	while (menuChoice != 3)
 	{
 		if(menuChoice == 2)
 		{
 				cout << "game.history" << endl;
 				cout << "game.rule" << endl;
-				cout << "Back to main menu?(Y/N): ";
+				cout << "Back to main menu?(Y): \n";
 				cin >> menu;
+				if(menu == 'Y' || 'y')
+					goto mainMenu;
 		}
+
 		else if(menuChoice == 1)
 		{
 			while(play == 'y' || play == 'Y')
 			{
 				turn = 0;
-
-				cout << "Input the size of the code: ";
+				system("CLS");
+				cout << "Input the size of the sequence: ";
 				cin >> size; cout << endl;
-				cout << "Input the random number size from(1-9): ";
+				cout << "Input the random number size from(1): ";
 				cin >> sizeRanF;
-				cout << "                                    to: ";
+				cout << "                             to(2-9): ";
 				cin >> sizeRanT; cout << endl;
 
 				int codeMaker[size];
@@ -76,81 +87,99 @@ int main(int argc, char** argv)
 					codeMaker[i] = rand()%sizeRanT+sizeRanF;
 				}
 
+				turnLeft = 10;
+				gamestatus = 'Y';
 
-				for(turn = 0; turn < 10; turn++)
+				while(gamestatus == 'Y' || gamestatus == 'n')
 				{
-					while(markO != size)
-					{
-						markO = 0;
-						cout << "The game has begun! ";
-						cout << "Input the guess: " << endl;
 
+					markO = 0;
+					cout << "You have " << turnLeft << " turns left!\n";
+					cout << "Input the guess: ";
+
+					for (int i = 0; i < size ; i++)
+					{
+						cin >> codeBreaker[i];
+						cin.ignore();
+					}cout << endl;
+
+					turnLeft--;
+
+					//Displaying table
+					for(int i = 0; i < size; i++)
+					{
+						cout << "X" << " ";
+					}cout << endl;
+
+					for(int i = 0; i < size+(size-1); i++)
+						cout << "-";
+					cout << endl;
+					for(int i = 0; i < size; i++)
+						cout << codeBreaker[i] << " ";
+					cout << endl;
+					//Table
+
+					for(int count = 0; count < size; count++)
+					{
 						for (int i = 0; i < size ; i++)
 						{
-							cin >> codeBreaker[i];
-							cin.ignore();
-						}
-						//Displaying table
-						for(int i = 0; i < size; i++)
-						{
-							cout << codeMaker[i] << " ";
-						}
-						cout << endl;
-
-						for(int i = 0; i < size+(size-1); i++)
-							cout << "-";
-						cout << endl;
-						//Table
-
-						for(int count = 0; count < size; count++)
-						{
-							for (int i = 0; i < size ; i++)
+							if(codeBreaker[count] == codeMaker[i] && count == i)
 							{
-								if(codeBreaker[count] == codeMaker[i] && count == i)
-								{
-									markO++;
-								}
+								markO++;
 							}
 						}
-						cout << "You have " << markO << " numbers right!";
-						cout << endl;
+					}
+					cout << "You have " << markO << " numbers right!";
+					cout << endl;
+					turn++;
+
+					if(markO == size)
+					{
+						cout << "\nYou win! You are the true MasterMind! \n";
+						cout << "The sequence is: ";
+						for(int i=0; i < size; i++)
+						cout << codeMaker[i] << " ";
+						turnLeft = 10;
+						gamestatus = 'N';
 					}
 
-					cout << "You win! Good Job There! \n";
-					cout << "Want to continue?(Y/N): ";
-					cin >> play;
-					if(play == 'N' || play == 'n')
-						exit;
+					else if (turn == 10)
+					{
+						cout << "\nRan out of turns. You lost! What a Surprise! \n";
+						cout << "The sequence is: ";
+						for(int i=0; i < size; i++)
+							cout << codeMaker[i] << " ";
+						turnLeft = 10;
+						gamestatus = 'N';
+					}
 				}
-					cout << "\n\nRan out of turns. You Lost! What a Suprise! " << endl;
-					cout << "Want to continue?(Y/N): ";
-					cin >> play;
-					if(play == 'N' || play == 'n')
-						break;
-				}
+				cout << "\nDo you want to continue?(Y/N): ";
+				cin >> play;
 			}
 		}
-	/*	Input game rules
+	}*/
+	//	Input game rules
 	inFile.open("GameRule.txt");
-	rule = LoadGameRuleFromFile(inFile, size);
+	LoadGameRuleFromFile(inFile, gameRule, size);
 	inFile.close();
-	*/
+
+	for(int i = 0; i < size; i++)
+		cout << gameRule[i] << endl;
+
 	return 0;
 }
 
-string LoadGameRuleFromFile(ifstream &inFile, int size)
+void LoadGameRuleFromFile(ifstream &inFile, string game[], int size)
 {
 		int index = 0;
-		char game[size];
-		//getline(inFile, game[0]);
+
+		getline(inFile, game[0]);
 		inFile >> game[0];
 		while(!inFile.eof() && index < size)
 		{
-			//getline(inFile, game[0]);
-			inFile >> game[0];
+			getline(inFile, game[index]);
 			index++;
 		}
-		return game;
 }
 
 void menuDisplay()
