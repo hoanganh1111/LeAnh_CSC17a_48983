@@ -24,7 +24,6 @@ struct about
 
 //Function prototypes
 void menuDisplay();
-void inMenuDisplay();
 string LoadGameRuleFromFile(ifstream &, int);
 
 int main(int argc, char** argv)
@@ -35,16 +34,12 @@ int main(int argc, char** argv)
 	int sizeRanF;
 	int sizeRanT;
 	int menuChoice;
-	int inMenuChoice;
-	char play = 'N';
+	char play = 'Y';
 	int markO;
 	int turn;
 	bool win = false;
+	char menu = 'N';
 
-	while(play == 'N' || play == 'n')
-		{
-		win = false;
-		markO = 0;
 		menuDisplay();
 		cin >> menuChoice;
 
@@ -52,34 +47,15 @@ int main(int argc, char** argv)
 	{
 		if(menuChoice == 2)
 		{
-			menuStuffs:
-			{
-			inMenuDisplay();
-			cin >> inMenuChoice;
-			}
-			if(inMenuChoice == 1)
-			{
 				cout << "game.history" << endl;
-				goto menuStuffs;
-			}
-			else if(inMenuChoice == 2)
-			{
 				cout << "game.rule" << endl;
-				goto menuStuffs;
-			}
-			else if(inMenuChoice == 3)
-			{
-				menuDisplay();
-				cin >> menuChoice;
-			}
-			else
-			{
-				cout << "Invalid input, re-enter: ";
-				cin >> inMenuChoice;
-			}
+				cout << "Back to main menu?(Y/N): ";
+				cin >> menu;
 		}
 		else if(menuChoice == 1)
 		{
+			while(play == 'y' || play == 'Y')
+			{
 				turn = 0;
 
 				cout << "Input the size of the code: ";
@@ -103,53 +79,54 @@ int main(int argc, char** argv)
 
 				for(turn = 0; turn < 10; turn++)
 				{
-					markO = 0;
-					cout << "The game has begun! ";
-					cout << "Input the guess: " << endl;
+					while(markO != size)
+					{
+						markO = 0;
+						cout << "The game has begun! ";
+						cout << "Input the guess: " << endl;
 
-					for (int i = 0; i < size ; i++)
-					{
-						cin >> codeBreaker[i];
-						cin.ignore();
-					}
-					//Displaying table
-					for(int i = 0; i < size; i++)
-					{
-						cout << codeMaker[i] << " ";
-					}
-					cout << endl;
+						for (int i = 0; i < size ; i++)
+						{
+							cin >> codeBreaker[i];
+							cin.ignore();
+						}
+						//Displaying table
+						for(int i = 0; i < size; i++)
+						{
+							cout << codeMaker[i] << " ";
+						}
+						cout << endl;
 
 						for(int i = 0; i < size+(size-1); i++)
 							cout << "-";
-					cout << endl;
-					//Table
+						cout << endl;
+						//Table
 
-					for(int count = 0; count < size; count++)
-					{
-						for (int i = 0; i < size ; i++)
+						for(int count = 0; count < size; count++)
 						{
-							if(codeBreaker[count] == codeMaker[i] && count == i)
+							for (int i = 0; i < size ; i++)
 							{
-								markO++;
+								if(codeBreaker[count] == codeMaker[i] && count == i)
+								{
+									markO++;
+								}
 							}
 						}
+						cout << "You have " << markO << " numbers right!";
+						cout << endl;
 					}
-					if(markO == size)
-					{
-						win = true;
-						cout << "You win! Good Job There! \n";
-						cout << "Want to continue?(Y/N): ";
-						cin >> play;
-					}
-					cout << "You have " << markO << " numbers right!";
-					cout << endl;
-					turn++;
+
+					cout << "You win! Good Job There! \n";
+					cout << "Want to continue?(Y/N): ";
+					cin >> play;
+					if(play == 'N' || play == 'n')
+						exit;
 				}
 					cout << "\n\nRan out of turns. You Lost! What a Suprise! " << endl;
 					cout << "Want to continue?(Y/N): ";
 					cin >> play;
-					win = false;
-
+					if(play == 'N' || play == 'n')
+						break;
 				}
 			}
 		}
@@ -184,15 +161,5 @@ void menuDisplay()
 	cout << "       1. Start the game.\n";
 	cout << "       2. About the game.\n";
 	cout << "       3. Quit.\n";
-	cout << "\nChoose an Option: ";
-}
-
-void inMenuDisplay()
-{
-	system("CLS");
-	cout << "								   ~ABOUT THE GAME~\n";
-	cout << "       1. About.\n";
-	cout << "       2. How to play.\n";
-	cout << "       3. Back to main menu.\n";
 	cout << "\nChoose an Option: ";
 }
