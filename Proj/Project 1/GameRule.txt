@@ -1,0 +1,12 @@
+MASTERMIND CODE BREAKER
+The computer becomes the codemaker, the user becomes the code 
+breaker. The computer will choose a pattern of 4 code pegs, 
+duplicates are allowed. 
+The code breaker will try to guess the pattern, in both value
+and pattern within 10 turns. After each guess, the codemaker 
+will provides feedback about the correction of the turn.
+A 'X' peg is placed for each code peg correctedboth color
+and position. A 'O' colored peg is placed for each right 
+numbered placed in wrong position. Once feedback is provided, 
+another guess is made and repeatedly until the guesser run 
+out of guesses or he breaks the code.
