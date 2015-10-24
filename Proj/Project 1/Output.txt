@@ -1,0 +1,92 @@
+                             ~YOUR STATUS AFTER THE GAME~
+
+The sequence: 9 5 9 
+
+Turn 1: 
+Your guess: 1 3 2 
+Turn left: 9 turns.
+
+
+Turn 2: 
+Your guess: 1 3 2 
+Turn left: 8 turns.
+
+
+Turn 3: 
+Your guess: 1 5 1 
+Turn left: 7 turns.
+
+
+Turn 4: 
+Your guess: 1 6 1 
+Turn left: 6 turns.
+
+
+Turn 5: 
+Your guess: 2 5 1 
+Turn left: 5 turns.
+
+
+Turn 6: 
+Your guess: 1 2 1 
+Turn left: 4 turns.
+
+
+Turn 7: 
+Your guess: 3 5 1 
+Turn left: 3 turns.
+
+
+Turn 8: 
+Your guess: 4 5 4 
+Turn left: 2 turns.
+
+
+Turn 9: 
+Your guess: 5 5 5 
+Turn left: 1 turns.
+
+
+Turn 10: 
+Your guess: 9 5 1 
+Turn left: 0 turns.
+You lost! Maximum of turns reached!
+
+Turn 11: 
+Your guess: 9 5 1 
+Turn left: -1 turns.
+
+
+Turn 12: 
+Your guess: 9 5 1 
+Turn left: -2 turns.
+
+
+Turn 13: 
+Your guess: 9 5 1 
+Turn left: -3 turns.
+
+
+Turn 14: 
+Your guess: 9 5 1 
+Turn left: -4 turns.
+
+
+Turn 15: 
+Your guess: 9 5 1 
+Turn left: -5 turns.
+
+
+Turn 16: 
+Your guess: 9 5 1 
+Turn left: -6 turns.
+
+
+Turn 17: 
+Your guess: 9 5 1 
+Turn left: -7 turns.
+
+
+Turn 18: 
+Your guess: 9 5 1 
+Turn left: -8 turns.
