@@ -15,26 +15,33 @@
 #include <stdlib.h>					//Standard Library
 using namespace std;				//Utilize standard name-space directly
 
-//Structure declaration
-struct about
-{
-	string history;
-	string rule;
-}game;
+	//Global constants
+	const int sizeT = 12;
+
+	//Structure declaration
+	struct about
+	{
+		string history[sizeT];
+		string rule[sizeT];
+	};
+
 
 //Function prototypes
 void menuDisplay();
-void LoadGameRuleFromFile(ifstream &, string[], int);
+void LoadGameRuleFromFile(ifstream &, string game[], int);
+void printRules(struct about game, int sizeT);
 
 int main(int argc, char** argv)
 {
 	ifstream inFile;
 	ofstream outFile;
 
+	string gameRule[sizeT];
+	string gameHis[sizeT];
 
-	int size = 10;
-	string gameRule[size];
+	about game;
 
+	int size;
 	int sizeRanF;
 	int sizeRanT;
 	int menuChoice;
@@ -45,7 +52,21 @@ int main(int argc, char** argv)
 	char menu = 'Y';
 	char gamestatus = 'Y';
 
-	/*
+	//	Input game rules
+		inFile.open("GameRule.txt");
+		LoadGameRuleFromFile(inFile, gameRule, sizeT);
+		inFile.close();
+
+		inFile.open("GameHistory.txt");
+		LoadGameRuleFromFile(inFile, gameHis, sizeT);
+		inFile.close();
+
+		for(int i = 0; i < sizeT; i++)
+		{
+			game.rule[i]= gameRule[i];
+			game.history[i]= gameHis[i];
+		}
+
 	mainMenu:
 	{
 		menuDisplay();
@@ -55,8 +76,15 @@ int main(int argc, char** argv)
 	{
 		if(menuChoice == 2)
 		{
-				cout << "game.history" << endl;
-				cout << "game.rule" << endl;
+				printRules(game , sizeT);
+//				for(int i = 0; i < sizeT; i++)
+//					cout << game.history[i] << endl;
+//
+//				cout << "HOW TO PLAY:\n";
+//
+//				for(int i = 0; i < sizeT; i++)
+//					cout << game.rule[i] << endl;
+
 				cout << "Back to main menu?(Y): \n";
 				cin >> menu;
 				if(menu == 'Y' || 'y')
@@ -157,25 +185,25 @@ int main(int argc, char** argv)
 				cin >> play;
 			}
 		}
-	}*/
-	//	Input game rules
-	inFile.open("GameRule.txt");
-	LoadGameRuleFromFile(inFile, gameRule, size);
-	inFile.close();
+	}
 
-	for(int i = 0; i < size; i++)
-		cout << gameRule[i] << endl;
+//	for(int i = 0; i < size; i++)
+//		cout << gameRule[i] << endl;
+//
+//	cout<< endl;
+//
+//	for(int i = 0; i < size; i++)
+//		cout << gameHis[i] << endl;
 
 	return 0;
 }
 
-void LoadGameRuleFromFile(ifstream &inFile, string game[], int size)
+void LoadGameRuleFromFile(ifstream &inFile, string game[], int sizeT)
 {
 		int index = 0;
 
 		getline(inFile, game[0]);
-		inFile >> game[0];
-		while(!inFile.eof() && index < size)
+		while(!inFile.eof() && index < sizeT)
 		{
 			getline(inFile, game[index]);
 			index++;
@@ -191,4 +219,17 @@ void menuDisplay()
 	cout << "       2. About the game.\n";
 	cout << "       3. Quit.\n";
 	cout << "\nChoose an Option: ";
+}
+
+void printRules(struct about game, int sizeT)
+{
+	system("CLS");
+	cout << "                                ~About The Game Page~\n\n";
+	for(int i = 0; i < sizeT; i++)
+		cout << game.history[i] << endl;
+
+	cout << "HOW TO PLAY:\n";
+
+	for(int i = 0; i < sizeT; i++)
+		cout << game.rule[i] << endl;
 }
