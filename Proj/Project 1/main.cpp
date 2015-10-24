@@ -61,6 +61,9 @@ int main(int argc, char** argv)
 		LoadGameRuleFromFile(inFile, gameHis, sizeT);
 		inFile.close();
 
+		outFile.open("Output.txt");
+		outFile << "                             ~YOUR STATUS AFTER THE GAME~\n\n";
+
 		for(int i = 0; i < sizeT; i++)
 		{
 			game.rule[i]= gameRule[i];
@@ -114,11 +117,14 @@ int main(int argc, char** argv)
 				{
 					codeMaker[i] = rand()%sizeRanT+sizeRanF;
 				}
+				outFile << "The sequence: ";
+				for(int i = 0; i < size; i++)
+					outFile << codeMaker[i] << " ";
 
 				turnLeft = 10;
 				gamestatus = 'Y';
 
-				while(gamestatus == 'Y' || gamestatus == 'n')
+				while(gamestatus == 'Y' || gamestatus == 'y')
 				{
 
 					markO = 0;
@@ -130,8 +136,13 @@ int main(int argc, char** argv)
 						cin >> codeBreaker[i];
 						cin.ignore();
 					}cout << endl;
-
 					turnLeft--;
+
+					outFile << "\n\nTurn " << turn+1 << ": ";
+					outFile << "\nYour guess: ";
+					for(int i = 0; i < size; i++)
+						outFile << codeBreaker[i] << " ";
+					outFile <<	"\nTurn left: " << turnLeft << " turns.\n";
 
 					//Displaying table
 					for(int i = 0; i < size; i++)
@@ -159,12 +170,14 @@ int main(int argc, char** argv)
 					}
 					cout << "You have " << markO << " numbers right!";
 					cout << endl;
+
 					turn++;
 
 					if(markO == size)
 					{
 						cout << "\nYou win! You are the true MasterMind! \n";
 						cout << "The sequence is: ";
+						outFile << "You won! At turn " << turn+1;
 						for(int i=0; i < size; i++)
 						cout << codeMaker[i] << " ";
 						turnLeft = 10;
@@ -175,6 +188,7 @@ int main(int argc, char** argv)
 					{
 						cout << "\nRan out of turns. You lost! What a Surprise! \n";
 						cout << "The sequence is: ";
+						outFile << "You lost! Maximum of turns reached!";
 						for(int i=0; i < size; i++)
 							cout << codeMaker[i] << " ";
 						turnLeft = 10;
@@ -187,13 +201,7 @@ int main(int argc, char** argv)
 		}
 	}
 
-//	for(int i = 0; i < size; i++)
-//		cout << gameRule[i] << endl;
-//
-//	cout<< endl;
-//
-//	for(int i = 0; i < size; i++)
-//		cout << gameHis[i] << endl;
+	outFile.close();
 
 	return 0;
 }
