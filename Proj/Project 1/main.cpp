@@ -62,6 +62,9 @@ int main(int argc, char** argv)
 	char menu = 'Y';						//Going back to main menu
 	char gamestatus = 'Y';					//While the user wants to play again
 
+	int *codeMaker;							//Code maker
+	int *codeBreaker;						//Code breaker
+
 		//Open GameRule.txt file
 		inFile.open("GameRule.txt");
 		//Loading game rule from file
@@ -131,8 +134,8 @@ int main(int argc, char** argv)
 				cout << "                             to(2-9): ";
 				cin >> sizeRanT; cout << endl;			//Input from 2-9
 
-				int codeMaker[size];					//Code maker array with size
-				int codeBreaker[size];					//Code breaker array with size
+				codeMaker   = new int[size];		//Dynamic allocated codeMaker using input size
+				codeBreaker = new int[size];		//Dynamic allocated codeBreaker using input size
 
 				//Set random number seed to time.
 				srand(static_cast<unsigned int>(time(0)));
@@ -223,6 +226,9 @@ int main(int argc, char** argv)
 
 	//Close the binary file Output.txt
 	outFile.close();
+
+	delete [] codeMaker;							//Delete the array stored
+	delete [] codeBreaker;							//Delete the array stored
 
 	//End code
 	return 0;
