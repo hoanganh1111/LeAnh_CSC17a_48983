@@ -108,7 +108,7 @@ int main(int argc, char** argv)
 				//You want to back to the main menu
 				cout << "Back to main menu?(Y): \n";
 				cin >> menu;							//Input the decision
-				if(menu == 'Y' || 'y')					//If they pick yes
+				if(menu == 'Y' || menu == 'y')					//If they pick yes
 					goto mainMenu;						//GO back to displaying main menu
 				else if (menu == 'N' || menu == 'n')
 					menuChoice = 3;						//Set menu choice to 3(exit the code)
