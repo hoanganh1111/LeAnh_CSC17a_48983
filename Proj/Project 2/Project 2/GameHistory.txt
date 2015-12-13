@@ -1,0 +1,12 @@
+
+  The game was originated as a board game in the UK. The game 
+uses colored coded pegs and only 4 slots. The code maker will
+randomly put in the sequence and the code breaker will have 7
+turns to solve it. Since it's a 4 pegs with six colors(blue, 
+red, white, green, yellow, black) thats a 6^4 = 1296 different
+patterns including duplicates. Since this is a modify coded 
+created by me, the user will put in the size they want as well
+as the random sequence they wish which mean it can have pattern
+of n numbers and x sequences random(x^n). If you are truly a 
+mastermind, you can figuring out a pattern to solve it using 
+eliminate possibilities. 

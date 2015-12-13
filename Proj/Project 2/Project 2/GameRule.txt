@@ -1,0 +1,12 @@
+
+  The computer becomes the codemaker and the user will become
+the code breaker. The user will input the size of the sequence 
+they want to break as well as the number random from (1-9) for 
+each number inside the sequence. The number can be duplicated.
+The computer will now randomize all the number and the slots by
+the user's choice. The game starts! The user will now given 10 
+turns to break the code. They will guess the number of the true
+sequence and the computer will tell if how many you got right.
+Try using a strategy or you won't be able to solve the sequence. 
+If the user ran out of turns or he/she guesses the code right, 
+they will rewarded as the true MasterMind. 
