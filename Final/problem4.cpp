@@ -17,6 +17,13 @@ SavingsAccount::SavingsAccount(float balance)
     FreqDeposit = 0;
 }
 
+SavingsAccount::~SavingsAccount()
+{
+    Balance = 0;
+    FreqWithDraw = 0;
+    FreqDeposit = 0;
+}
+
 void SavingsAccount::Transaction(float trans)
 {
     if(trans>0)
@@ -24,11 +31,11 @@ void SavingsAccount::Transaction(float trans)
     	FreqDeposit++;
     	Balance+=trans;
     }
-    else if(trans==0)
+    else if(trans == 0)
     	Balance -= 0.00;
     else
     {
-        if(Balance>trans)
+        if(Balance > trans)
         {
             FreqWithDraw++;
             Balance-=trans;
@@ -40,8 +47,8 @@ void SavingsAccount::Transaction(float trans)
 
 float SavingsAccount::Total(float savint,int time)
 {
-    float total=Balance;
-    float total2=(1+savint);
+    float total = Balance;
+    float total2 = (1+savint);
 
     for(int i=1;i<time;i++)
         total2*=(1+savint);
@@ -68,11 +75,4 @@ void SavingsAccount::toString()
     cout<<"Your current balance is: $"<<Balance
         <<"\nYou have "<<FreqWithDraw<<" withdraws.\n"
         <<"You have "<<FreqDeposit<<" deposits.\n";
-}
-
-SavingsAccount::~SavingsAccount()
-{
-    Balance = 0;
-    FreqWithDraw = 0;
-    FreqDeposit = 0;
 }

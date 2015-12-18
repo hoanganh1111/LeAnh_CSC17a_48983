@@ -99,6 +99,7 @@ float Employee::setHourlyRate(float a)
     return HourlyRate;
 }
 
+//double!!
 double Employee::Tax(float a)
 {
     if(a <= 500 && a > 0)

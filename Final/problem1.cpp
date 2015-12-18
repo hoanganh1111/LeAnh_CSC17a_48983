@@ -4,6 +4,7 @@
  *  Created on: Dec 14, 2015
  *      Author: AnhLe
  */
+//Include header informations
 #include "myheader.h"
 #include "problem1.h"
 
@@ -23,7 +24,7 @@ Prob1Random::Prob1Random(const char n ,const char *randseg)
 	//Set random number seed to time.
 	srand(static_cast<unsigned int>(time(0)));
 	//For some reason this works here instead of putting it
-	//before the rand equation in randFromSet
+	//before the random equation in randFromSet
 }
 
 Prob1Random::~Prob1Random(void)

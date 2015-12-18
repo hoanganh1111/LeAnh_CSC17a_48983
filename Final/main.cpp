@@ -18,6 +18,7 @@ void problem2();
 void problem3();
 void problem4();
 void problem5();
+void problem6();
 
 int main(int argc, char** argv)
 {
@@ -45,8 +46,8 @@ int main(int argc, char** argv)
 			case 5:					//Choice is 5
 				problem5();			//Run problem 5 function
 				break;				//break
-//			case 6: //run problem 6
-//				break;
+			case 6: 				//run problem 6
+				break;
 			default:				//Any other input
 				def(inN);			//Exit code
 				break;
@@ -176,4 +177,9 @@ void problem5()
 	Mary.toString();
 	Mary.CalculatePay(Mary.setHourlyRate(50.0), Mary.setHoursWorked(60));
 	Mary.toString();
+}
+
+void problem6()
+{
+
 }

@@ -23,7 +23,7 @@ protected:
     T grandTotal;                             //Grand total
     void calcTable(void);                     //Calculate all the sums
 public:
-    Prob3Table(char [],int,int);               //Constructor then Destructor
+    Prob3Table(char [],int,int);              //Constructor then Destructor
     ~Prob3Table(){delete [] table;delete [] rowSum;delete [] colSum;};
     const T *getTable(void){return table;};
     const T *getRowSum(void){return rowSum;};
@@ -32,16 +32,16 @@ public:
 };
 
 template<class T>
-Prob3Table<T>::Prob3Table(char filename[], int ro, int co)
+Prob3Table<T>::Prob3Table(char filename[], int row, int col)
 {
-    if(ro > 0)
-        rows = ro;
+    if(row > 0)
+        rows = row;
 
     else
         rows = 0;
 
-    if(co > 0)
-        cols = co;
+    if(col > 0)
+        cols = col;
 
     else
         cols = 0;
@@ -89,40 +89,42 @@ void Prob3Table<T>::calcTable(void)
     }
 
     grandTotal = 0;
+
     for(int i = 0; i < cols; i++)
         grandTotal += colSum[i];
 }
+
 template<class T>
 class Prob3TableInherited:public Prob3Table<T>
 {
 protected:
     T *augTable;                                  //Augmented Table with sums
 public:
-    Prob3TableInherited(char [], int ,int);      //Constructor
+    Prob3TableInherited(char [], int ,int);       //Constructor
     ~Prob3TableInherited(){delete [] augTable;};  //Destructor
     const T *getAugTable(void){return augTable;};
 };
 
 template<class T>
-Prob3TableInherited<T>::Prob3TableInherited(char filename[], int ro, int co) : Prob3Table<T>( filename, ro, co)
+Prob3TableInherited<T>::Prob3TableInherited(char filename[], int row, int col) : Prob3Table<T>( filename, row, col)
 {
     this->calcTable();
-    augTable = new T[(ro + 1) * (co + 1)];
+    augTable = new T[(row + 1) * (col + 1)];
 
-    for(int r = 0; r < ro; r++)
+    for(int r = 0; r < row; r++)
     {
-        for(int c = 0; c < co; c++)
-            augTable[r * (co + 1) + c] = this->table[r * co + c];
+        for(int c = 0; c < col; c++)
+            augTable[r * (col+ 1) + c] = this->table[r * col + c];
     }
 
-    for(int r = 0; r < ro; r++)
-        augTable[r * (co + 1) + co] = this->rowSum[r];
+    for(int r = 0; r < row; r++)
+        augTable[r * (col + 1) + col] = this->rowSum[r];
 
 
-    for(int c = 0; c < co; c++)
-        augTable[ro * (co + 1) + c] = this->colSum[c];
+    for(int c = 0; c < col; c++)
+        augTable[row * (col + 1) + c] = this->colSum[c];
 
-    augTable[(ro + 1) * (co + 1) - 1] = this->grandTotal;
+    augTable[(row + 1) * (col + 1) - 1] = this->grandTotal;
 }
 
 #endif /* PROBLEM3_H_ */
